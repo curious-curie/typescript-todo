@@ -1,8 +1,12 @@
 <template>
   <div class="home">
-    <login/>
-    <register/>
-    <todo-list/>
+    <div v-if="isAuthenticated">
+    {{ user.email }}
+     <todo-list/>
+    </div>
+    <div v-else>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -13,13 +17,27 @@ import TodoList from '@/components/TodoList.vue'
 import Login from '@/components/auth/Login.vue'
 import Register from '@/components/auth/Register.vue'
 import Component from 'vue-class-component'
+import { mapState } from 'vuex'
 
 @Component({
   components: {
     Login,
     Register,
     TodoList
+  },
+  computed: {
+    ...mapState('auth', [
+      'user'
+    ])
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  get isAuthenticated () {
+    if (this.$store.state.auth.user === undefined || this.$store.state.auth.user === null) {
+      if (this.$router.path !== '/login') { this.$router.push('login') }
+      return false
+    }
+    return true
+  }
+}
 </script>

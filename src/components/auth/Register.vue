@@ -15,6 +15,7 @@
             type="password"
             placeholder="Confirm password"
             v-model="confirmPassword"
+            v-on:keyup.enter="register"
         required>
         <button
             @click="register"
@@ -22,6 +23,7 @@
         >
         Sign Up
         </button>
+        <router-link to="/login">Sign In</router-link>
     </div>
 </template>
 <script lang="ts">

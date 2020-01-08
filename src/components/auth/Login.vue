@@ -10,6 +10,7 @@
             type="password"
             placeholder="Password"
             v-model="password"
+            v-on:keyup.enter="login"
         required>
         <button
             @click="login"
@@ -17,6 +18,7 @@
         >
         Sign In
         </button>
+        <router-link to="/register">Sign Up</router-link>
     </div>
 </template>
 <script lang="ts">
