@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div v-if="isAuthenticated">
-    {{ user.email }}
+    <div>welcome {{ user.email }}
+      <button @click="logout">Logout</button>
+    </div>
      <todo-list/>
     </div>
     <div v-else>
@@ -17,7 +19,7 @@ import TodoList from '@/components/TodoList.vue'
 import Login from '@/components/auth/Login.vue'
 import Register from '@/components/auth/Register.vue'
 import Component from 'vue-class-component'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 @Component({
   components: {
@@ -29,6 +31,10 @@ import { mapState } from 'vuex'
     ...mapState('auth', [
       'user'
     ])
+  },
+  methods: {
+    ...mapActions('auth',
+      ['logout'])
   }
 })
 export default class Home extends Vue {
