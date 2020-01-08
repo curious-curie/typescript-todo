@@ -1,5 +1,5 @@
 import actions from './actions'
-// import mutations from './mutations'
+import mutations from './mutations'
 import { State } from './types'
 
 const initState: State = {
@@ -10,5 +10,6 @@ export default {
   namespaced: true,
   namespace: 'authModule',
   state: initState,
-  actions
+  actions,
+  mutations
 }

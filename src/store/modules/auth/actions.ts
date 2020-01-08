@@ -9,6 +9,7 @@ export default {
       .then(
         res => {
           console.log(res)
+          context.commit('SET_USER', res.user)
         }
       )
   },
@@ -17,14 +18,16 @@ export default {
       .then(
         res => {
           console.log(res)
+          context.commit('SET_USER', res.user)
         }
       )
       .catch((error) => {
-        alert('try again')
+        alert(error.message)
         console.log(error)
       })
   },
   logout (context: { commit: Commit, state: State }, payload: any) {
     firebase.auth().signOut()
+    context.commit('SET_USER', null)
   }
 }
