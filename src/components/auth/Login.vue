@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1>Login</h1>
         <input
             type="text"
