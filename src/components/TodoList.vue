@@ -12,6 +12,8 @@
         v-for="todo in filteredTodos"
         :key="todo.title"
         :todo="todo"
+        @deleteTodo="deleteTodo(todo)"
+        @toggleTodo="toggleTodo(todo)"
       />
 
       <div class="footer">
@@ -64,7 +66,9 @@ const filters = (selected: string) => (todos: TodoConfig[]) => {
       'applyFilter',
       'setNewTodo',
       'clearNewTodo',
-      'loadTodos'
+      'loadTodos',
+      'toggleTodo',
+      'deleteTodo'
     ])
   }
 })

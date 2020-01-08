@@ -29,18 +29,21 @@
 
 <script lang="ts">
 import { mapActions } from 'vuex'
+import { TodoConfig } from '@/store/modules/todos/types'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-export interface Todo {
-    title: string
-    completed: boolean
-}
-export default {
-  props: ['todo'],
-  methods: {
-    ...mapActions('todos', [
-      'deleteTodo',
-      'toggleTodo'
-    ])
+@Component({
+  props: ['todo']
+})
+
+export default class Todo extends Vue {
+  deleteTodo (todo: TodoConfig) {
+    this.$emit('deleteTodo', todo)
+  }
+  toggleTodo (todo: TodoConfig) {
+    this.$emit('toggleTodo', todo)
   }
 }
+
 </script>
