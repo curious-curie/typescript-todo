@@ -79,7 +79,7 @@ export default class TodoList extends Vue {
 
   selectedFilter = 'all';
   created () {
-    this.$store.dispatch('todos/loadTodos', db.collection('users').doc(this.$store.state.auth.user.uid).collection('todos'))
+    this.$store.dispatch('todos/loadTodos', db.collection('users').doc(this.$store.state.auth.user).collection('todos'))
   }
   addTodoItem () {
     this.$store.dispatch('todos/addTodo')
