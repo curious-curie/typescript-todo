@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div v-if="isAuthenticated">
-    <div>welcome {{ user }}
+    <div>welcome {{ userEmail }}
       <button @click="logout">Logout</button>
     </div>
      <todo-list/>
@@ -35,11 +35,15 @@ import * as firebase from 'firebase/app'
   }
 })
 export default class Home extends Vue {
+  get userEmail () {
+    return firebase.auth().currentUser.email
+  }
   get isAuthenticated () {
     if (this.$store.state.auth.user === undefined || this.$store.state.auth.user === null) {
       // if (localStorage.getItem('user') !== null) {
-      //   const loggedInUser = localStorage.getItem('uid')
-      //   this.$store.dispatch('auth/setUserFromLocal', loggedInUser)
+      //   const userInfo = JSON.parse(localStorage.getItem('user'))
+      //   console.log(userInfo)
+      //   this.$store.dispatch('auth/login', userInfo)
       //   return true
       // }
       if (this.$router.path !== '/login') { this.$router.push('login') }
@@ -49,7 +53,7 @@ export default class Home extends Vue {
   }
   logout () {
     this.$store.dispatch('auth/logout')
-    localStorage.setItem('user', null)
+    // localStorage.setItem('user', null)
   }
 }
 </script>

@@ -30,7 +30,7 @@ export default {
           .then(
             res => {
               context.commit('SET_USER', res.user!.uid)
-              localStorage.setItem('uid', res.user!.uid)
+              // localStorage.setItem('user', JSON.stringify(payload))
             }
           )
           .catch((error) => {

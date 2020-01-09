@@ -38,9 +38,11 @@ input {
 }
 
 .footer {
+
     line-height: 2rem;
     display: inline-block;
     padding: 10px;
+
     button {
         margin-right: 8px;
         font-size: 15px;
@@ -53,8 +55,40 @@ input {
     .active {
         background-color: rgb(255, 218, 224);
     }
-    
+
 }
+
+.auth-footer {
+    
+    padding: 15px;
+    button {
+        font-size: 15px;
+        margin: 0 auto;
+        display: block;
+        border-style: none;
+    }
+
+    .main {
+        font-size: 20px;
+        border-radius: 15px;
+        width: 150px;
+        background-color: rgb(250, 209, 209);
+        margin-bottom: 10px;
+        opacity: 0.7;
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+
+
+
 .filters {
     display: inline-block;
+}
+
+.auth-title {
+    font-size: 30px;
+    padding: 20px;
+    color: gray;
 }

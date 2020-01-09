@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Register</h1>
+        <div class="auth-title">Register</div>
         <input
             type="text"
             placeholder="e-mail"
@@ -17,13 +17,16 @@
             v-model="confirmPassword"
             v-on:keyup.enter="register"
         required>
+        <div class="auth-footer">
         <button
+            class="main"
             @click="register"
             :disabled="!isValid"
         >
         Sign Up
         </button>
         <router-link to="/login">Sign In</router-link>
+        </div>
     </div>
 </template>
 <script lang="ts">
