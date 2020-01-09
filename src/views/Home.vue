@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div v-if="isAuthenticated">
-    <div>welcome {{ user.email }}
+    <div>welcome {{ user }}
       <button @click="logout">Logout</button>
     </div>
      <todo-list/>
@@ -20,6 +20,7 @@ import Login from '@/components/auth/Login.vue'
 import Register from '@/components/auth/Register.vue'
 import Component from 'vue-class-component'
 import { mapState, mapActions } from 'vuex'
+import * as firebase from 'firebase/app'
 
 @Component({
   components: {
@@ -31,19 +32,24 @@ import { mapState, mapActions } from 'vuex'
     ...mapState('auth', [
       'user'
     ])
-  },
-  methods: {
-    ...mapActions('auth',
-      ['logout'])
   }
 })
 export default class Home extends Vue {
   get isAuthenticated () {
     if (this.$store.state.auth.user === undefined || this.$store.state.auth.user === null) {
+      if (localStorage.getItem('user') !== null) {
+        const loggedInUser = localStorage.getItem('uid')
+        this.$store.dispatch('auth/setUserFromLocal', loggedInUser)
+        return true
+      }
       if (this.$router.path !== '/login') { this.$router.push('login') }
       return false
     }
     return true
+  }
+  logout () {
+    this.$store.dispatch('auth/logout')
+    localStorage.setItem('user', null)
   }
 }
 </script>

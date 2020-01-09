@@ -1,8 +1,8 @@
 import actions from './actions'
 import mutations from './mutations'
-import { State } from './types'
+import { AuthState } from './types'
 
-const initState: State = {
+const initState: AuthState = {
   user: null
 }
 

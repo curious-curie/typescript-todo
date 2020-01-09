@@ -1,17 +1,20 @@
 import * as types from './mutation-types'
-import { State } from './types'
+import { AuthState } from './types'
 
 export default {
-  [types.SET_USER] (state: State, newUser: any) {
+  [types.SET_USER] (state: AuthState, newUser: any) {
     state.user = newUser
   },
-  [types.REGISTER] (state: State, newUser: any) {
+  [types.REGISTER] (state: AuthState, newUser: any) {
     state.user = newUser
   },
-  [types.LOGIN] (state: State, loggedInUser: any) {
+  [types.LOGIN] (state: AuthState, loggedInUser: any) {
     state.user = loggedInUser
   },
-  [types.LOGOUT] (state: State, loggedOutUser: null) {
+  [types.LOGOUT] (state: AuthState, loggedOutUser: null) {
     state.user = loggedOutUser
+  },
+  [types.SET_USER_FROM_LOCAL] (state: AuthState, userfromLocal: any) {
+    state.user = userfromLocal
   }
 }

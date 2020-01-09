@@ -1,13 +1,13 @@
 import db from '@/main'
-import { State, TodoConfig } from './types'
+import { TodoState, TodoConfig } from './types'
 import { Commit } from 'vuex'
 import * as firebase from 'firebase/app'
 
 export default {
-  loadTodos: (context: { commit: Commit, state: State }, payload: object) => {
+  loadTodos: (context: { commit: Commit, state: TodoState }, payload: object) => {
     context.commit('LOAD_TODOS', payload)
   },
-  addTodo (context: { commit: Commit, state: State }) {
+  addTodo (context: { commit: Commit, state: TodoState }) {
     if (context.state.newTodo && firebase.auth().currentUser !== null) {
       const userId = firebase.auth().currentUser!.uid
       const todoItem = {
@@ -22,13 +22,13 @@ export default {
       db.collection('users').doc(userId).collection('todos').doc(todoItem.title).set(todoItem)
     }
   },
-  setNewTodo (context: { commit: Commit, state: State }, todoInput: string) {
+  setNewTodo (context: { commit: Commit, state: TodoState }, todoInput: string) {
     context.commit('SET_NEW_TODO', todoInput)
   },
-  clearNewTodo (context: { commit: Commit, state: State }) {
+  clearNewTodo (context: { commit: Commit, state: TodoState }) {
     context.commit('CLEAR_NEW_TODO')
   },
-  deleteTodo (context: { commit: Commit, state: State }, todo: TodoConfig) {
+  deleteTodo (context: { commit: Commit, state: TodoState }, todo: TodoConfig) {
     const userId = firebase.auth().currentUser!.uid
     context.commit('DELETE_TODO', todo)
     db.collection('todos')
@@ -36,7 +36,7 @@ export default {
       .delete()
     db.collection('users').doc(userId).collection('todos').doc(todo.title).delete()
   },
-  toggleTodo (context: { commit: Commit, state: State }, todo: TodoConfig) {
+  toggleTodo (context: { commit: Commit, state: TodoState }, todo: TodoConfig) {
     const userId = firebase.auth().currentUser!.uid
     context.commit('TOGGLE_TODO', todo)
     const todoItem = { ...todo }
@@ -46,7 +46,7 @@ export default {
       .doc(todo.title)
       .set(todoItem)
   },
-  clearCompleted (context: { commit: Commit, state: State }) {
+  clearCompleted (context: { commit: Commit, state: TodoState }) {
     const userId = firebase.auth().currentUser!.uid
     context.commit('CLEAR_COMPLETED')
     db.collection('users').doc(userId).collection('todos').get()
@@ -60,7 +60,7 @@ export default {
         })
       })
   },
-  completeAll (context: { commit: Commit, state: State }) {
+  completeAll (context: { commit: Commit, state: TodoState }) {
     const userId = firebase.auth().currentUser!.uid
     context.commit('COMPLETE_ALL')
     db.collection('users').doc(userId).collection('todos').get()
