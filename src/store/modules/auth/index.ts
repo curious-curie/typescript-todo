@@ -1,15 +1,14 @@
 import actions from './actions'
 import mutations from './mutations'
-import { TodoState } from './types'
+import { AuthState } from './types'
 
-const initState: TodoState = {
-  newTodo: null,
-  todos: []
+const initState: AuthState = {
+  user: null
 }
 
 export default {
   namespaced: true,
-  namespace: 'todosModule',
+  namespace: 'authModule',
   state: initState,
   actions,
   mutations

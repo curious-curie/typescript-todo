@@ -3,7 +3,7 @@ export interface TodoConfig {
     completed: boolean
 }
 
-export interface State {
+export interface TodoState {
     newTodo: string | null
     todos: TodoConfig[]
 }
