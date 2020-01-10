@@ -1,8 +1,8 @@
 import actions from './actions'
 import mutations from './mutations'
-import { TodoState } from './types'
+import { State } from './types'
 
-const initState: TodoState = {
+const initState: State = {
   newTodo: null,
   todos: []
 }

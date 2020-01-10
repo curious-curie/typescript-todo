@@ -7,17 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: require('@/views/Home.vue').default,
-    children: [
-      {
-        path: 'login',
-        component: require('@/components/auth/Login.vue').default
-      },
-      {
-        path: 'register',
-        component: require('@/components/auth/Register.vue').default
-      }
-    ]
+    component: require('@/views/Home.vue').default
   },
   {
     path: '/:filter',
