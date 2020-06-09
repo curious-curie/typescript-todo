@@ -1,0 +1,23 @@
+.container {
+    margin: 0 auto;
+    margin-top: 50px;
+    background: rgb(255, 255, 255);
+    width: 600px;
+    -webkit-box-shadow: 9px 8px 23px -15px rgba(128,128,128,1);
+    -moz-box-shadow: 9px 8px 23px -15px rgba(128,128,128,1);
+    box-shadow: 9px 8px 23px -15px rgba(128,128,128,1);
+}
+
+.todo__container {
+    color: gray;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 25px;
+    font-size: 25px;
+    line-height: normal;
+    border-bottom: 1px solid whitesmoke;
+    &:hover {
+        color: black;
+    }
+}
+
